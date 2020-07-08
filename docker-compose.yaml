@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+        service1:
+                image: mihsana/project-service1
+                build: ./service1
+                ports:
+                        - "5000:5000"
+                depends_on:
+                        - service4
+
+
+
+        service2:
+                image: mihsana/project-service2
+                build: ./service2
+                ports:
+                        - "5001:5001"
+
+        service3:
+                image: mihsana/project-service3
+                build: ./service3
+                ports:
+                        - "5002:5002"
+
+
+        service4:
+                image: mihsana/project-service4
+                build: ./service4
+                ports:
+                        - "5003:5003"
