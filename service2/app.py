@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/number', methods=['GET'])
 def number():
-    number = random.ranint(1,10)
-    return Response(number, mimetype='text/plain')
+    number = random.randint(1,10)
+    return Response(str(number), mimetype='text/plain')
 
 
     

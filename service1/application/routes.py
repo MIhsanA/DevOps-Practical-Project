@@ -10,8 +10,9 @@ import random
 @app.route('/', methods=['GET'])
 def home():
     number = requests.get('http://service2:5001/number')
-    id = number
-    name= Person.query(Person.name).get(id)
+    id = int(number.text)
+    name= Person.query.filter_by(id=id).first().name
+
     car = requests.get('http://service3:5002/car')
     dec= {'car':car.text, 'name':name}
     colour = requests.post('http://service4:5003/colour', data=dec)
@@ -24,5 +25,5 @@ def new_person():
         db.session.add(new_person)
         db.session.commit()
         return rdirect(url_for('home'))
-    return render_template('new_persom.html', form=form)
+    return render_template('new_person.html', form=form)
 
