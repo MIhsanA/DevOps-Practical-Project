@@ -10,5 +10,5 @@ def car():
     return Response(car, mimetype='text/plain')
 
 
-if name == "__main__":
+if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5002)

@@ -4,27 +4,51 @@ services:
                 image: mihsana/project-service1
                 build: ./service1
                 ports:
-                        - "5000:5000"
+                        - target: 5000
+                          published: 5000
+                          protocol: tcp
                 depends_on:
-                        - service4
-
+                        - "mysql"
+                environment:
+                        DATABASE_URI: ${DATABASE_URI}
+                                
 
 
         service2:
                 image: mihsana/project-service2
                 build: ./service2
                 ports:
-                        - "5001:5001"
+                        - target: 5001
+                          published: 5001
+                          protocol: tcp
 
         service3:
                 image: mihsana/project-service3
                 build: ./service3
                 ports:
-                        - "5002:5002"
+                        - target: 5002
+                          published: 5002
+                          protocol: tcp
 
 
         service4:
                 image: mihsana/project-service4
                 build: ./service4
                 ports:
-                        - "5003:5003"
+                        - target: 5003
+                          published: 5003
+                          protocol: tcp
+
+        mysql:
+                image: mysql
+                ports:
+                        - target: 3306
+                          published: 3306
+                          protocol: tcp
+                       
+                environment:
+                        MYSQL_ROOT_PASSQORD: root
+                        MYSQL_RANDOM_ROOT_PASSWORD: 'TRUE'
+                        MYSQL_DATABASE: project-db
+                 
+               
