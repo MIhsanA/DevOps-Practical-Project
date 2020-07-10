@@ -1,10 +1,13 @@
-<h1>{{ person.text }}</h1>
-<h2>{{ number.txt }}</h2>
-<p>{{ car.txt }}</p>
-{{ colour.txt }}
+{% if name %}
+<h2>Number: {{ number.text }}</h2>
+<h2>Name: {{ name }}</h2>
+<h2>Car: {{ car.text }}</h2>
+<h2>Colour: {{ colour.text }}</h2>
 
-<form method='GET' action='{{ url_for('home') }}'>
-	<button type="submit">Submit</button> 
+{% endif %}
+
+<form method='GET' action='{{ url_for('generate') }}'>
+	<button type="submit">New Winner</button> 
 </form>
 <form method='GET' action='{{ url_for('new_person') }}'>
         <button type="submit">new person</button>

@@ -9,21 +9,25 @@ import random
 
 @app.route('/', methods=['GET'])
 def home():
+    return render_template('home.html')
+
+
+@app.route('/genrate')
+def generate():
     number = requests.get('http://service2:5001/number')
     id = int(number.text)
-    name= Person.query.filter_by(id=id).first().name
-
+    name= Person.query.filter_by(id=id).first()
+    new_name= str(name.name)
     car = requests.get('http://service3:5002/car')
-    dec= {'car':car.text, 'name':name}
-    colour = requests.post('http://service4:5003/colour', data=dec)
-    return render_template('home.html', person=person, number=number, car=car, colour=colour)
+    colour = requests.post('http://service4:5003/colour', new_name)
+    return render_template('home.html', number=number, name=name.name, car=car, colour=colour)
 @app.route('/new', methods=['GET', 'POST'])
 def new_person():
     form =PersonForm()
     if form.validate_on_submit():
-        new_person = Persons(name=form.name.data)
+        new_person = Person(name=form.name.data)
         db.session.add(new_person)
         db.session.commit()
-        return rdirect(url_for('home'))
+        return redirect(url_for('home'))
     return render_template('new_person.html', form=form)
 
