@@ -1,0 +1,14 @@
+{% if name %}
+<h2>Number: {{ number.text }}</h2>
+<h2>Name: {{ name }}</h2>
+<h2>Car: {{ car.text }}</h2>
+<h2>Colour: {{ colour.text }}</h2>
+
+{% endif %}
+
+<form method='GET' action='{{ url_for('generate') }}'>
+	<button type="submit">New Winner</button> 
+</form>
+<form method='GET' action='{{ url_for('new_person') }}'>
+        <button type="submit">new person</button>
+</form>

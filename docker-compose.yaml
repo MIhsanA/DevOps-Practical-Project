@@ -4,27 +4,66 @@ services:
                 image: mihsana/project-service1
                 build: ./service1
                 ports:
-                        - "5000:5000"
+                        - target: 5000
+                          published: 5000
+                          protocol: tcp
                 depends_on:
-                        - service4
-
+                        - "mysql"
+                environment:
+                        SECRET_KEY: ${SECRET_KEY}
+                        DATABASE_URI: ${DATABASE_URI}
+                deploy:
+                        replicas: 2 
 
 
         service2:
                 image: mihsana/project-service2
                 build: ./service2
                 ports:
-                        - "5001:5001"
+                        - target: 5001
+                          published: 5001
+                          protocol: tcp
+                 
+                deploy:
+                        replicas: 2
 
         service3:
                 image: mihsana/project-service3
                 build: ./service3
                 ports:
-                        - "5002:5002"
+                        - target: 5002
+                          published: 5002
+                          protocol: tcp
 
+                deploy:
+                        replicas: 2
 
         service4:
                 image: mihsana/project-service4
                 build: ./service4
                 ports:
-                        - "5003:5003"
+                        - target: 5003
+                          published: 5003
+                          protocol: tcp
+                deploy:
+                        replicas: 2
+
+
+        mysql:
+                image: mysql
+                container_name: mysql
+                ports:
+                        - target: 3306
+                          published: 3306
+                          protocol: tcp
+                       
+                environment:
+                        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD} 
+                        MYSQL_DATABASE: project-db
+                volumes:
+                        - type: volume
+                          source: db-data
+                          target: /var/lib/mysql
+
+volumes:
+        db-data:

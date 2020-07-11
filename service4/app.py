@@ -5,31 +5,31 @@ app = Flask(__name__)
 
 @app.route('/colour', methods=['POST'])
 def colour():
-    car= request.data2.decode('utf-8')
+
     person = request.data.decode('utf-8')
 
     if person[0].lower() in "red":
-        color = f"red {car}"
+        colour = "red"
         return Response(colour, mimetype='text/plain')
 
-    elif person[0].lower() in "grey":
-        color = f"greyc {car}"
+    elif person[0].lower() in "gray":
+        colour = "gray"
         return Response(colour, mimetype='text/plain')
     
     elif person[0].lower() in "white":
-        color = f"white {car}"
+        colour = "white"
         return Response(colour, mimetype='text/plain')
 
     elif person[0].lower() in "blue":
-        color = f"blue {car}"
+        colour = "blue"
         return Response(colour, mimetype='text/plain')
 
     elif person[0].lower() in "green":
-        color = f"green {car}"
+        colour = "green"
         return Response(colour, mimetype='text/plain')
 
     else:
-        color = f"black {car}"
+        colour = "black"
         return Response(colour, mimetype='text/plain')
 
 
