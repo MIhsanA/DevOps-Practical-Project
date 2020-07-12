@@ -3,11 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 import random
 import requests
 app = Flask(__name__)
-db = SQLAlchemy(app)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
-class Person(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False)
 @app.route('/number', methods=['GET'])
 def number():
     person= Person.query.all()
