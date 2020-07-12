@@ -6,6 +6,7 @@ sudo apt install python3-pip -y
 pip3 install -r service1/requirements.txt
 pip3 install pytest pytest-cov
 pip3 install flask_testing
+pip3 install selenium
 #. /home/muhammad_786_ihsan/DevOps-Practical-Project/venv/bin/activate
 
 cd service1
