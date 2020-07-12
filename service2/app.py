@@ -4,7 +4,7 @@ import random
 import requests
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
+#app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
 @app.route('/number', methods=['GET'])
 def number():
     #person= Person.query.all()
