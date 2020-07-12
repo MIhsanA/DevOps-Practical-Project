@@ -1,21 +1,21 @@
 #! /bin/bash
 
-run apt update
-run apt install python3-pip -y
+sudo apt update
+sudo apt install python3-pip -y
 
-run pip3 install -r service1/requirements.txt
-
+pip3 install -r service1/requirements.txt
+pip3 install pytest pytest-cov
 #. /home/muhammad_786_ihsan/DevOps-Practical-Project/venv/bin/activate
 
 cd service1
-pytest --cov ./application
+python3 -m pytest --cov ./application
 
 cd ../service2
-pytest 
+python3 -m pytest 
 
 cd ../service3
-pytest 
+python3 -m pytest 
 
 cd ../service4
-pytest 
+python3 -m pytest 
 
