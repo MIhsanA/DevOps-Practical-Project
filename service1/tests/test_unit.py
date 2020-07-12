@@ -1,7 +1,7 @@
 from unittest.mock import patch
-from flask import url_for
+from flask import url_for, request
 from flask_testing import TestCase
-
+import requests_mock
 from application import app, db, bcrypt
 from application.models import Person
 from os import getenv 
@@ -24,9 +24,9 @@ class TestBase(TestCase):
         db.drop_all()
         db.create_all()
 
-        update=Person(name='ihsan')
-        db.session.add(update)
-        db.session.commit
+        
+        
+    
 
     def tearDown(self):
         db.session.remove()
@@ -38,9 +38,9 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
 
 
-class Person(TestBase):
+class Test_Person(TestBase):
 
-    def new_name(self):
+    def test_new_name(self):
         with self.client:
             response = self.client.post(
                 '/new',
@@ -52,12 +52,13 @@ class Person(TestBase):
             self.assertIn(b'ihsan', response.data)
 
 class TestGenerate(TestBase):
-    def test_generat(self):
-        with patch('requests.get') as g:
-            g.return_value.text = "3"
-            with patch('requests.get') as p:
-                p.return_value.text = "bmw"
-                with patch('request.post') as l:
-                    l.return_value.text = "red"
-                    response = self.clint.get('/genrate')
-                    self.assertin(b'3', response.data)
+    def test_generate(self):
+        with requests_mock.mock() as g:
+            g.get("http://service2:5001/number", text="3")
+            g.get("http://service3:5002/car", text="bmw")
+            g.post("http://service4:5003/colour", text="blue")
+            response = self.client.post(url_for('/', data = ""))
+            self.assertIn(b'3', response.data)
+            self.assertIn(b'bmw', response.data)
+            self.assertIn(b'blue', response.data)
+
