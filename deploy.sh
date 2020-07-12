@@ -1,5 +1,4 @@
 #! /bin/bash
-python3 create.py -y
 docker-compose build
 docker-compose push
 scp docker-compose.yaml jenkins@practical-project:/home/jenkins/docker-compose.yaml
