@@ -1,9 +1,9 @@
 #! /bin/bash
 
-sudo apt update
-sudo apt install python3-pip -y
+run apt update
+run apt install python3-pip -y
 
-sudo pip3 install -r requirement.txt
+run pip3 install -r requirement.txt
 
 . /home/muhammad_786_ihsan/DevOps-Practical-Project/venv/bin/activate
 
