@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, Requests
 from flask_sqlalchemy import SQLAlchemy
 import random
 import requests
@@ -11,4 +11,4 @@ def number():
     number = random.randint(1,10)
     return Response(str(number), mimetype='text/plain')
 if __name__ == '__main__':
-    app.run(debug=True, port=5001, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=5001)
