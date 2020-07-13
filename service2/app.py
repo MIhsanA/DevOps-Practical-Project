@@ -1,4 +1,4 @@
-from flask import Flask, Response, 
+from flask import Flask, Response 
 import random
 import requests
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/number', methods=['GET'])
 def number():
     number = random.randint(1,10)
-    return Response(number, mimetype='text/plain')
+    return Response(str(number), mimetype='text/plain')
 
 
 if __name__ == '__main__':
